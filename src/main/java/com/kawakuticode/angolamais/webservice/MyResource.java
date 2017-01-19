@@ -48,4 +48,66 @@ public class MyResource {
 		}
 		return temp;
 	}
+	
+	@GET
+	@Path("/tourism")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String tourismContentJson() throws ClassNotFoundException, SQLException {
+		ConnectionFactory conn = new ConnectionFactory();
+		Connection connection = conn.getConnection();
+		String temp = "";
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_tourism");
+
+		while (rs.next()) {
+			temp += "" + rs.getString("atraction_content") + "\n";
+		}
+		return temp;
+	}
+	
+	@GET
+	@Path("/radios")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String radioContentJson() throws ClassNotFoundException, SQLException {
+		ConnectionFactory conn = new ConnectionFactory();
+		Connection connection = conn.getConnection();
+		String temp = "";
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_radio");
+
+		while (rs.next()) {
+			temp += "" + rs.getString("radio_content") + "\n";
+		}
+		return temp;
+	}
+	@GET
+	@Path("/gastronomy")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String gastronomyContentJson() throws ClassNotFoundException, SQLException {
+		ConnectionFactory conn = new ConnectionFactory();
+		Connection connection = conn.getConnection();
+		String temp = "";
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_gastronomy");
+
+		while (rs.next()) {
+			temp += "" + rs.getString("dish_content") + "\n";
+		}
+		return temp;
+	}
+	@GET
+	@Path("/restaurant")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String restaurantContentJson() throws ClassNotFoundException, SQLException {
+		ConnectionFactory conn = new ConnectionFactory();
+		Connection connection = conn.getConnection();
+		String temp = "";
+		Statement stmt = connection.createStatement();
+		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_restaurant");
+
+		while (rs.next()) {
+			temp += "" + rs.getString("restaurant_content") + "\n";
+		}
+		return temp;
+	}
 }
