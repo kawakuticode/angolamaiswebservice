@@ -18,7 +18,7 @@ public class ConnectionFactory {
 //			 ); 
 			   //String password = dbUri.getUserInfo().split(":")[1];
 			 
-			   Class.forName("org.postgresql.Driver");
+			   
 			 
 
 			//Class.forName("org.postgresql.Driver");
@@ -27,6 +27,7 @@ public class ConnectionFactory {
 			
 
 			String dbUrl =System.getenv("DATABASE_URL");
+			Class.forName("org.postgresql.Driver");
 			return DriverManager.getConnection(dbUrl);
 		} catch (SQLException e) {
 			// TODO: handle exception
