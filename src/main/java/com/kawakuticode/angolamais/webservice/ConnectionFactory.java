@@ -24,8 +24,7 @@ public class ConnectionFactory {
 			//Class.forName("org.postgresql.Driver");
 			//String dbUrl = "jdbc:postgresql://127.0.0.1:5432/kawakutitestedb";
 
-			
-
+		
 			String dbUrl =System.getenv("DATABASE_URL");
 			Class.forName("org.postgresql.Driver");
 			return DriverManager.getConnection(dbUrl);
