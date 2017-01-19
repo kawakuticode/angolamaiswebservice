@@ -1,5 +1,6 @@
 package com.kawakuticode.angolamais.webservice;
 
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,9 +10,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
-
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -34,80 +33,93 @@ public class MyResource {
 
 	@GET
 	@Path("/history")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String historyContentJson() throws ClassNotFoundException, SQLException {
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONArray historyContentJson() throws ClassNotFoundException, SQLException, URISyntaxException {
+		
 		ConnectionFactory conn = new ConnectionFactory();
+		 Connection connection = conn.getConnection();
+		//Connection connection = conn.getLocalConnection();
 
-		Connection connection = conn.getConnection();
-		String temp = "";
+		AngolaMaisUtilities uti = new AngolaMaisUtilities();
+
+		String column_name = "content_subject";
 		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_history");
 
-		while (rs.next()) {
-			temp += "" + rs.getString("content_subject") + "\n";
-		}
-		return temp;
+		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_history");
+		return uti.buildArrayFromDb(rs, column_name);
+
 	}
-	
+
 	@GET
 	@Path("/tourism")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String tourismContentJson() throws ClassNotFoundException, SQLException {
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONArray tourismContentJson() throws ClassNotFoundException, SQLException {
+
+		
 		ConnectionFactory conn = new ConnectionFactory();
 		Connection connection = conn.getConnection();
-		String temp = "";
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_tourism");
+		//Connection connection = conn.getLocalConnection();
 
-		while (rs.next()) {
-			temp += "" + rs.getString("atraction_content") + "\n";
-		}
-		return temp;
+		AngolaMaisUtilities uti = new AngolaMaisUtilities();
+
+		String column_name = "atraction_content";
+		Statement stmt = connection.createStatement();
+
+		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_tourism");
+		return uti.buildArrayFromDb(rs, column_name);
 	}
-	
+
 	@GET
 	@Path("/radios")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String radioContentJson() throws ClassNotFoundException, SQLException {
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONArray radioContentJson() throws ClassNotFoundException, SQLException {
+		
+		
 		ConnectionFactory conn = new ConnectionFactory();
-		Connection connection = conn.getConnection();
-		String temp = "";
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_radio");
+		 Connection connection = conn.getConnection();
+		//Connection connection = conn.getLocalConnection();
 
-		while (rs.next()) {
-			temp += "" + rs.getString("radio_content") + "\n";
-		}
-		return temp;
+		AngolaMaisUtilities uti = new AngolaMaisUtilities();
+
+		String column_name = "radio_content";
+		Statement stmt = connection.createStatement();
+
+		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_radio");
+		return uti.buildArrayFromDb(rs, column_name);
 	}
+
 	@GET
 	@Path("/gastronomy")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String gastronomyContentJson() throws ClassNotFoundException, SQLException {
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONArray gastronomyContentJson() throws ClassNotFoundException, SQLException {
 		ConnectionFactory conn = new ConnectionFactory();
-		Connection connection = conn.getConnection();
-		String temp = "";
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_gastronomy");
+		 Connection connection = conn.getConnection();
+		
+		//Connection connection = conn.getLocalConnection();
 
-		while (rs.next()) {
-			temp += "" + rs.getString("dish_content") + "\n";
-		}
-		return temp;
+		AngolaMaisUtilities uti = new AngolaMaisUtilities();
+
+		String column_name = "dish_content";
+		Statement stmt = connection.createStatement();
+
+		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_gastronomy");
+		return uti.buildArrayFromDb(rs, column_name);
 	}
+
 	@GET
 	@Path("/restaurant")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String restaurantContentJson() throws ClassNotFoundException, SQLException {
+	@Produces(MediaType.APPLICATION_JSON)
+	public JSONArray restaurantContentJson() throws ClassNotFoundException, SQLException {
 		ConnectionFactory conn = new ConnectionFactory();
-		Connection connection = conn.getConnection();
-		String temp = "";
-		Statement stmt = connection.createStatement();
-		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_restaurant");
+		 Connection connection = conn.getConnection();
+		//Connection connection = conn.getLocalConnection();
 
-		while (rs.next()) {
-			temp += "" + rs.getString("restaurant_content") + "\n";
-		}
-		return temp;
+		AngolaMaisUtilities uti = new AngolaMaisUtilities();
+
+		String column_name = "restaurant_content";
+		Statement stmt = connection.createStatement();
+
+		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_restaurant");
+		return uti.buildArrayFromDb(rs, column_name);
 	}
 }
