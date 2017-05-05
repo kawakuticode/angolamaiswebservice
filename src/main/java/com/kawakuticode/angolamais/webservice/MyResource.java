@@ -39,8 +39,8 @@ public class MyResource {
 	public JSONArray tourismContentJson() throws ClassNotFoundException, SQLException {
 
 		 ConnectionFactory conn = new ConnectionFactory();
-		 Connection connection = conn.getConnection();
-		//Connection connection = conn.getLocalConnection();
+		// Connection connection = conn.getConnection();
+		Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
 
