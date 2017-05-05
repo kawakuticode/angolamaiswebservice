@@ -39,8 +39,8 @@ public class MyResource {
 	public JSONArray tourismContentJson() throws ClassNotFoundException, SQLException {
 
 		ConnectionFactory conn = new ConnectionFactory();
-		// Connection connection = conn.getConnection();
-		Connection connection = conn.getLocalConnection();
+		 Connection connection = conn.getConnection();
+		//Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
 
@@ -63,8 +63,8 @@ public class MyResource {
 	public String radioContentJson() throws ClassNotFoundException, SQLException {
 
 		ConnectionFactory conn = new ConnectionFactory();
-		// Connection connection = conn.getConnection();
-		Connection connection = conn.getLocalConnection();
+		Connection connection = conn.getConnection();
+		//Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
 
@@ -80,8 +80,8 @@ public class MyResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String gastronomyContentJson() throws ClassNotFoundException, SQLException {
 		ConnectionFactory conn = new ConnectionFactory();
-		// Connection connection = conn.getConnection();
-		Connection connection = conn.getLocalConnection();
+		 Connection connection = conn.getConnection();
+		//Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
 
@@ -98,8 +98,8 @@ public class MyResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String restaurantContentJson() throws ClassNotFoundException, SQLException {
 		ConnectionFactory conn = new ConnectionFactory();
-		// Connection connection = conn.getConnection();
-		Connection connection = conn.getLocalConnection();
+		 Connection connection = conn.getConnection();
+		//Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
 
