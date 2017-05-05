@@ -12,6 +12,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import org.json.simple.JSONArray;
 
+//import org.json.JSONArray;
+
 /**
  * Root resource (exposed at "myresource" path)
  */
@@ -32,52 +34,37 @@ public class MyResource {
 	}
 
 	@GET
-	@Path("/history")
-	@Produces(MediaType.APPLICATION_JSON)
-	public JSONArray historyContentJson() throws ClassNotFoundException, SQLException, URISyntaxException {
-		
-		ConnectionFactory conn = new ConnectionFactory();
-		 Connection connection = conn.getConnection();
-		//Connection connection = conn.getLocalConnection();
-
-		AngolaMaisUtilities uti = new AngolaMaisUtilities();
-
-		String column_name = "content_subject";
-		Statement stmt = connection.createStatement();
-
-		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_history");
-		return uti.buildArrayFromDb(rs, column_name);
-
-	}
-
-	@GET
 	@Path("/tourism")
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONArray tourismContentJson() throws ClassNotFoundException, SQLException {
 
-		
 		ConnectionFactory conn = new ConnectionFactory();
-		Connection connection = conn.getConnection();
-		//Connection connection = conn.getLocalConnection();
+		// Connection connection = conn.getConnection();
+		Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
 
 		String column_name = "atraction_content";
-		Statement stmt = connection.createStatement();
+		Statement stmt = connection.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 
 		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_tourism");
-		return uti.buildArrayFromDb(rs, column_name);
+
+		JSONArray jsonArray = new JSONArray();
+		jsonArray.add(uti.stringArrayFromDb(rs, column_name));
+		// return uti.stringArrayFromDb(rs, column_name);
+
+		return jsonArray;
+		// return uti.buildArrayFromDb(rs, column_name);
 	}
 
 	@GET
 	@Path("/radios")
-	@Produces(MediaType.APPLICATION_JSON)
-	public JSONArray radioContentJson() throws ClassNotFoundException, SQLException {
-		
-		
+	@Produces(MediaType.TEXT_PLAIN)
+	public String radioContentJson() throws ClassNotFoundException, SQLException {
+
 		ConnectionFactory conn = new ConnectionFactory();
-		 Connection connection = conn.getConnection();
-		//Connection connection = conn.getLocalConnection();
+		// Connection connection = conn.getConnection();
+		Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
 
@@ -85,17 +72,16 @@ public class MyResource {
 		Statement stmt = connection.createStatement();
 
 		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_radio");
-		return uti.buildArrayFromDb(rs, column_name);
+		return uti.stringArrayFromDb(rs, column_name);
 	}
 
 	@GET
 	@Path("/gastronomy")
-	@Produces(MediaType.APPLICATION_JSON)
-	public JSONArray gastronomyContentJson() throws ClassNotFoundException, SQLException {
+	@Produces(MediaType.TEXT_PLAIN)
+	public String gastronomyContentJson() throws ClassNotFoundException, SQLException {
 		ConnectionFactory conn = new ConnectionFactory();
-		 Connection connection = conn.getConnection();
-		
-		//Connection connection = conn.getLocalConnection();
+		// Connection connection = conn.getConnection();
+		Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
 
@@ -103,16 +89,17 @@ public class MyResource {
 		Statement stmt = connection.createStatement();
 
 		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_gastronomy");
-		return uti.buildArrayFromDb(rs, column_name);
+		return uti.stringArrayFromDb(rs, column_name);
+
 	}
 
 	@GET
 	@Path("/restaurant")
-	@Produces(MediaType.APPLICATION_JSON)
-	public JSONArray restaurantContentJson() throws ClassNotFoundException, SQLException {
+	@Produces(MediaType.TEXT_PLAIN)
+	public String restaurantContentJson() throws ClassNotFoundException, SQLException {
 		ConnectionFactory conn = new ConnectionFactory();
-		 Connection connection = conn.getConnection();
-		//Connection connection = conn.getLocalConnection();
+		// Connection connection = conn.getConnection();
+		Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
 
@@ -120,6 +107,6 @@ public class MyResource {
 		Statement stmt = connection.createStatement();
 
 		ResultSet rs = stmt.executeQuery("SELECT * FROM tb_restaurant");
-		return uti.buildArrayFromDb(rs, column_name);
+		return uti.stringArrayFromDb(rs, column_name);
 	}
 }

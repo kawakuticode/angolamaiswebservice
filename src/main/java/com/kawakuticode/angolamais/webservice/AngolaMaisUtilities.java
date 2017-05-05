@@ -15,6 +15,8 @@ import org.eclipse.persistence.oxm.json.JsonArrayBuilderResult;
 
 import org.json.simple.*;
 
+//import org.json.JSONArray;
+
 public class AngolaMaisUtilities {
 
 	public AngolaMaisUtilities() {
@@ -28,11 +30,26 @@ public class AngolaMaisUtilities {
 		int i = 0;
 		while (r.next()) {
 			JSONObject tmp = new JSONObject();
-			tmp.put(i, r.getObject(column_name));
+			tmp.put(i, r.getObject(column_name).toString());
 			array_temp.add(tmp);
 			i++;
 		}
 		return array_temp;
 	}
 
+	public String stringArrayFromDb(ResultSet r, String column_name) throws SQLException {
+
+		// String result="[";
+		StringBuilder builderString = new StringBuilder();
+		// String result=new String();
+		while (r.next()) {
+			if (r.isLast()) {
+				builderString.append(r.getString(column_name));
+				// +"]";
+			} else {
+				builderString.append(r.getString(column_name) + ",");
+			}
+		}
+		return builderString.toString();
+	}
 }

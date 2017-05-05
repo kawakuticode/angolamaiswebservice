@@ -43,6 +43,6 @@ public class ConnectionFactory {
 		} catch (SQLException e) {
 			// TODO: handle exception
 			throw new RuntimeException(e);
-		}
+		}  
 	}
 }

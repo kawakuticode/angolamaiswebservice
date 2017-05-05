@@ -23,7 +23,6 @@ public class MyResourceTest extends JerseyTest {
     @Test
     public void testGetIt() {
         final String responseMsg = target().path("/hello").request().get(String.class);
-
         assertEquals("Hello,welcome to  angola mais app webservice!", responseMsg);
     }
 }
