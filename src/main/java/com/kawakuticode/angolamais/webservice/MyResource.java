@@ -38,7 +38,7 @@ public class MyResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public JSONArray tourismContentJson() throws ClassNotFoundException, SQLException {
 
-		ConnectionFactory conn = new ConnectionFactory();
+		 ConnectionFactory conn = new ConnectionFactory();
 		 Connection connection = conn.getConnection();
 		//Connection connection = conn.getLocalConnection();
 
@@ -98,7 +98,7 @@ public class MyResource {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String restaurantContentJson() throws ClassNotFoundException, SQLException {
 		ConnectionFactory conn = new ConnectionFactory();
-		 Connection connection = conn.getConnection();
+		Connection connection = conn.getConnection();
 		//Connection connection = conn.getLocalConnection();
 
 		AngolaMaisUtilities uti = new AngolaMaisUtilities();
