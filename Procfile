@@ -1,1 +1,1 @@
-web: java -cp . Main
+web: java -cp . com.kawakuticode.angolamais.webservice.Main
